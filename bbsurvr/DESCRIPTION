@@ -1,0 +1,13 @@
+Package: bbsurvr
+Type: Package
+Title: What the Package Does (Title Case)
+Version: 0.1.0
+Author: Stefan Bartels
+Maintainer: Stefan BArtels <email@biobits.eu>
+Description: More about what it does (maybe more than one line)
+License: What license is it under?
+LazyData: TRUE
+Imports:
+    survival,
+    RColorBrewer
+RoxygenNote: 5.0.1
