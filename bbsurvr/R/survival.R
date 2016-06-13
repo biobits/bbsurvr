@@ -23,20 +23,23 @@ kmsurv <- function(S, totaltimes) {
   approx(tt, ss, xout=totaltimes, method='constant', f=0)$y
 }
 ##########################################################################################################################################################################################################
-##Funktion f?r das ektrahieren des p-Wertes aus der surfdiff funktion
+##Funktion fuer das extrahieren des p-Wertes aus der surfdiff funktion
 ##########################################################################################################################################################################################################
-#' Function to exctract p-Value via surfdiff object
+#' Function to exctract p-Value from surfdiff object
 #'
 #' accepts a list of vectors of identical length and returns one vector with the first non-NA value
 #'
-#' @param list of vectors of identical length
+#' @param daten Data.Frame with survival datacontaining min. two columns with a) survival time b) survival status
+#' @param group columnsname to be groubed by
+#' @param time name of column containing the intervall data. default="time"
+#' @param status name of colmn containig status data. default="status" 
 #'
-#' @return one vector with the first non-NA value
+#' @return a numeric vector representing the p-value
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' coalesce(c(NA,NA,53))
+#' pvalue<-p.value.survdiff(daten=df,group="Treatment",time="duration",status="survivalstatus")
 #'
 #'@export
 p.value.survdiff<-function(daten,group=NULL, time="time",status="status")
@@ -343,7 +346,7 @@ bbRelSurvPlot<- function(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=
 }
 
 ##########################################################################################################################################################################################################
-##Funktion für die Darstellung des relativen 1-5-Jahresüberlebn als Kohortenanalyse (Kohorte = Gruppen der Diagnosehjahre)
+##Funktion fuer die Darstellung des relativen 1-5-Jahres�berlebn als Kohortenanalyse (Kohorte = Gruppen der Diagnosehjahre)
 ##########################################################################################################################################################################################################
 #' R coalesce Function
 #'
