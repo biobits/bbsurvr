@@ -2,21 +2,29 @@
 % Please edit documentation in R/survival.R
 \name{bbBoxPlot}
 \alias{bbBoxPlot}
-\title{R coalesce Function}
+\title{R Function to streamline the generation of (grouped) boxplots}
 \usage{
 bbBoxPlot(daten, gruppe = NULL, filename = NULL, ylab, titel = NULL)
 }
 \arguments{
-\item{list}{of vectors of identical length}
+\item{daten}{the vector of numeric data}
+
+\item{gruppe}{if given the factors to be grouped by}
+
+\item{filename}{if given output will be delivered to file}
+
+\item{ylab}{label of y axis}
+
+\item{titel}{}
 }
 \value{
-one vector with the first non-NA value
+a base boxplot
 }
 \description{
-accepts a list of vectors of identical length and returns one vector with the first non-NA value
+R Function to streamline the generation of (grouped) boxplots
 }
 \examples{
-coalesce(c(NA,NA,53))
+bp<-bbBoxPlot()
 
 }
 \author{

@@ -2,25 +2,58 @@
 % Please edit documentation in R/survival.R
 \name{bbKMPlot}
 \alias{bbKMPlot}
-\title{R coalesce Function}
+\title{R Function to streamline the generation of survival plots}
 \usage{
 bbKMPlot(daten, gruppe = NULL, titel, filename, survtime = NULL,
   survtimetext = NULL, legendeout = NULL, file.out = TRUE,
   legfontsize = NULL, subtext = "", xmax = 61.25,
-  xlab = "Monate (Anzeige bis max. 5 Jahre)", cex.lab = 1, cex.axis = 1,
+  xlab = "Beobachtungszeit in Monaten", cex.lab = 1, cex.axis = 1,
   watermark = TRUE, ylab = "", logrank = FALSE)
 }
 \arguments{
-\item{list}{of vectors of identical length}
+\item{daten}{the data.frame with survival data}
+
+\item{gruppe}{optional: the factor the plot has to be grouped by}
+
+\item{titel}{the title of the plot}
+
+\item{filename}{the filename if the plot should be saved as file}
+
+\item{survtime}{the time intervall in month to show the survival rate for (e.g. 24 for 2-year survival-rate)}
+
+\item{survtimetext}{the text to label the survival rate}
+
+\item{legendeout}{if TRUE the legend will be printet outside the plot margins}
+
+\item{file.out}{if TRUE the plot will be saved to file}
+
+\item{legfontsize}{fontsize of legend (default=1)}
+
+\item{subtext}{if needed a subtext to be placed beneath the plot}
+
+\item{xmax}{MAx Value for X-axis}
+
+\item{xlab}{Label for x-axis (default="Monate (Anzeige bis max. 5 Jahre)")}
+
+\item{cex.lab}{Fontsize for label (default=1)}
+
+\item{cex.axis}{Fontsize for axis (default=1)}
+
+\item{watermark}{if TRUE the biobits watermark will be printet on plot}
+
+\item{ylab}{the label for y-axis}
+
+\item{logrank}{if true a logrank test is performed for two(!) survival curves and the result will be printet on the plot (default=FALSE)}
 }
 \value{
-one vector with the first non-NA value
+a survival plot
 }
 \description{
-accepts a list of vectors of identical length and returns one vector with the first non-NA value
+accepts a data frame containing survival data an
 }
 \examples{
-coalesce(c(NA,NA,53))
+p<-bbKMPlot(daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetext=NULL,legendeout=NULL,file.out=TRUE,legfontsize=NULL,subtext="",
+xmax=61.25,xlab="Beobachtungszeit in Monaten",cex.lab=1,cex.axis=1,watermark=TRUE,ylab="",logrank=FALSE)
 
 }
 \author{

@@ -4,7 +4,6 @@
 ##########################################################################################################################################################################################################
 #' Function to calculate the probability of survival for a point in time
 #'
-#' accepts a list of vectors of identical length and returns one vector with the first non-NA value
 #'
 #' @param S
 #' @param totaltimes
@@ -13,7 +12,7 @@
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' kmsurv(S,M)
+#' x<-kmsurv(S,totaltimes)
 #'
 #'@export
 kmsurv <- function(S, totaltimes) {
@@ -32,7 +31,7 @@ kmsurv <- function(S, totaltimes) {
 #' @param daten Data.Frame with survival datacontaining min. two columns with a) survival time b) survival status
 #' @param group columnsname to be groubed by
 #' @param time name of column containing the intervall data. default="time"
-#' @param status name of colmn containig status data. default="status" 
+#' @param status name of colmn containig status data. default="status"
 #'
 #' @return a numeric vector representing the p-value
 #'
@@ -54,22 +53,40 @@ p.value.survdiff<-function(daten,group=NULL, time="time",status="status")
 ##Funktion zum erstellen eines einheitlichen KM-Plots
 ##
 ##########################################################################################################################################################################################################
-#' R coalesce Function
+#' R Function to streamline the generation of survival plots
 #'
-#' accepts a list of vectors of identical length and returns one vector with the first non-NA value
+#' accepts a data frame containing survival data an
 #'
-#' @param list of vectors of identical length
+#' @param daten the data.frame with survival data
+#' @param gruppe optional: the factor the plot has to be grouped by
+#' @param titel the title of the plot
+#' @param filename the filename if the plot should be saved as file
+#' @param survtime the time intervall in month to show the survival rate for (e.g. 24 for 2-year survival-rate)
+#' @param survtimetext the text to label the survival rate
+#' @param legendeout if TRUE the legend will be printet outside the plot margins
+#' @param file.out if TRUE the plot will be saved to file
+#' @param legfontsize fontsize of legend (default=1)
+#' @param subtext if needed a subtext to be placed beneath the plot
+#' @param xmax MAx Value for X-axis
+#' @param xlab Label for x-axis (default="Monate (Anzeige bis max. 5 Jahre)")
+#' @param cex.lab Fontsize for label (default=1)
+#' @param cex.axis Fontsize for axis (default=1)
+#' @param watermark if TRUE the biobits watermark will be printet on plot
+#' @param ylab the label for y-axis
+#' @param logrank if true a logrank test is performed for two(!) survival curves and the result will be printet on the plot (default=FALSE)
 #'
-#' @return one vector with the first non-NA value
+#'
+#' @return a survival plot
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' coalesce(c(NA,NA,53))
+#' p<-bbKMPlot(daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetext=NULL,legendeout=NULL,file.out=TRUE,legfontsize=NULL,subtext="",
+#' xmax=61.25,xlab="Beobachtungszeit in Monaten",cex.lab=1,cex.axis=1,watermark=TRUE,ylab="",logrank=FALSE)
 #'
 #'@export
 bbKMPlot <- function (daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetext=NULL,legendeout=NULL,file.out=TRUE,legfontsize=NULL,subtext="",
-                       xmax=61.25,xlab="Monate (Anzeige bis max. 5 Jahre)",cex.lab=1,cex.axis=1,watermark=TRUE,ylab="",logrank=FALSE)
+                       xmax=61.25,xlab="Beobachtungszeit in Monaten",cex.lab=1,cex.axis=1,watermark=TRUE,ylab="",logrank=FALSE)
 {
   #status als numeric definieren
   daten$status<-as.numeric(daten$status)
@@ -200,18 +217,22 @@ bbKMPlot <- function (daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetex
 ##########################################################################################################################################################################################################
 ##Funktion f?r eine zum erstellen eines einheitlichen BoxPlots
 ##########################################################################################################################################################################################################
-#' R coalesce Function
+#' R Function to streamline the generation of (grouped) boxplots
 #'
-#' accepts a list of vectors of identical length and returns one vector with the first non-NA value
 #'
-#' @param list of vectors of identical length
+#' @param daten the vector of numeric data
+#' @param gruppe if given the factors to be grouped by
+#' @param filename if given output will be delivered to file
+#' @param ylab label of y axis
+#' @param titel
 #'
-#' @return one vector with the first non-NA value
+#' @return a base boxplot
+#'
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' coalesce(c(NA,NA,53))
+#' bp<-bbBoxPlot()
 #'
 #'@export
 bbBoxPlot<- function(daten,gruppe=NULL,filename=NULL,ylab,titel=NULL)
@@ -234,21 +255,18 @@ bbBoxPlot<- function(daten,gruppe=NULL,filename=NULL,ylab,titel=NULL)
 ##########################################################################################################################################################################################################
 ##Funktion f?r das erzeugen eines angepassten RGB-GmbH Farbthemas
 ##########################################################################################################################################################################################################
-#' R coalesce Function
+#' R fuction to set a unified layout for base plots
 #'
 #' accepts a list of vectors of identical length and returns one vector with the first non-NA value
 #'
-#' @param list of vectors of identical length
-#'
-#' @return one vector with the first non-NA value
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' coalesce(c(NA,NA,53))
+#' bbTheme()
 #'
 #'@export
-rgb.theme <- function() {
+bbTheme <- function() {
   par <- col.whitebg()
   par$strip.background$col <- rep("#60759B", 7)
   par$add.text$col <- "#eeeeaa"
@@ -263,18 +281,25 @@ rgb.theme <- function() {
 ##########################################################################################################################################################################################################
 ##Funktion für die Darstellung des relativen 1-5-Jahresüberlebn nach Gruppe
 ##########################################################################################################################################################################################################
-#' R coalesce Function
+#' R Function to plot the relative 1-5 years survival by a given group
 #'
 #' accepts a list of vectors of identical length and returns one vector with the first non-NA value
 #'
-#' @param list of vectors of identical length
+#' @param x dataframe with survival data
+#' @param gruppe the factor to be grouped by
+#' @param ylab label of y axis
+#' @param xlab label of x axis
+#' @param title title of plot
+#' @param jahrstart year to start the intervall
+#' @param jahrende year of end of intervall
 #'
-#' @return one vector with the first non-NA value
+#'
+#' @return a base plot
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' coalesce(c(NA,NA,53))
+#' relsurvplot<-bbRelSurvPlot(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=NULL,jahrende=NULL)
 #'
 #'@export
 bbRelSurvPlot<- function(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=NULL,jahrende=NULL)
@@ -286,10 +311,13 @@ bbRelSurvPlot<- function(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=
   if (is.null(jahrstart)==FALSE){j_start<-jahrstart}
   if (is.null(jahrende)==FALSE){j_end<-jahrende}
 
-  probs.male<-read.csv2(paste(c(GetRDirPath(),"/Data/PeriodensterbetafelD_M.csv"),collapse=""),header = TRUE, sep = ";",dec=",", quote="\"")
+  #probs.male<-read.csv2(paste(c(GetRDirPath(),"/Data/PeriodensterbetafelD_M.csv"),collapse=""),header = TRUE, sep = ";",dec=",", quote="\"")
+  #probs.female<-read.csv2(paste(c("C:/DATA/svn/r-skripte/Data/PeriodensterbetafelD_W.csv"),collapse=""),header = TRUE, sep = ";",dec=",", quote="\"")
+  data("probsmale")
   names.male<-gsub("X","",names(probs.male))
   names(probs.male)<-names.male
-  probs.female<-read.csv2(paste(c(GetRDirPath(),"/Data/PeriodensterbetafelD_W.csv"),collapse=""),header = TRUE, sep = ";",dec=",", quote="\"")
+ # probs.female<-read.csv2(paste(c(GetRDirPath(),"/Data/PeriodensterbetafelD_W.csv"),collapse=""),header = TRUE, sep = ";",dec=",", quote="\"")
+  data("probsfemale")
   names.female<-gsub("X","",names(probs.female))
   names(probs.female)<-names.female
   survdata<-new.df(c("group","diagyear","fu1","fu2","fu3","fu4","fu5","obs"))
@@ -346,20 +374,26 @@ bbRelSurvPlot<- function(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=
 }
 
 ##########################################################################################################################################################################################################
-##Funktion fuer die Darstellung des relativen 1-5-Jahres�berlebn als Kohortenanalyse (Kohorte = Gruppen der Diagnosehjahre)
+##Funktion fuer die Darstellung des relativen 1-5-Jahres?berlebn als Kohortenanalyse (Kohorte = Gruppen der Diagnosehjahre)
 ##########################################################################################################################################################################################################
-#' R coalesce Function
+#' Function to generate a Plot of 1-5 yera relative survival for different cohortes
 #'
-#' accepts a list of vectors of identical length and returns one vector with the first non-NA value
 #'
-#' @param list of vectors of identical length
+#' @param x survival data
+#' @param ylab label of y axis
+#' @param xlab label of x axis
+#' @param title  title of plot
+#' @param jahrstart year bto start the intervall
+#' @param jahrende year to en the intervall
+#' @param jahrintervall stepsize of the intervall to be displayed default is one year
+#' @param method  to calculate relative survival default ='edererII'
 #'
-#' @return one vector with the first non-NA value
+#' @return a plot
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' coalesce(c(NA,NA,53))
+#' relsurvcoplot<-bbRelSurvCohortPlot(x,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=NULL,jahrende=NULL,jahrintervall=1,method='edererII', lang='de')
 #'
 #'@export
 bbRelSurvCohortPlot<- function(x,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=NULL,jahrende=NULL,jahrintervall=1,method='edererII', lang='de')

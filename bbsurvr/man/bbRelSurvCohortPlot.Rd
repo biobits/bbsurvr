@@ -2,23 +2,37 @@
 % Please edit documentation in R/survival.R
 \name{bbRelSurvCohortPlot}
 \alias{bbRelSurvCohortPlot}
-\title{R coalesce Function}
+\title{Function to generate a Plot of 1-5 yera relative survival for different cohortes}
 \usage{
 bbRelSurvCohortPlot(x, ylab = NULL, xlab = NULL, titel = NULL,
   jahrstart = NULL, jahrende = NULL, jahrintervall = 1,
   method = "edererII", lang = "de")
 }
 \arguments{
-\item{list}{of vectors of identical length}
+\item{x}{survival data}
+
+\item{ylab}{label of y axis}
+
+\item{xlab}{label of x axis}
+
+\item{jahrstart}{year bto start the intervall}
+
+\item{jahrende}{year to en the intervall}
+
+\item{jahrintervall}{stepsize of the intervall to be displayed default is one year}
+
+\item{method}{to calculate relative survival default ='edererII'}
+
+\item{title}{title of plot}
 }
 \value{
-one vector with the first non-NA value
+a plot
 }
 \description{
-accepts a list of vectors of identical length and returns one vector with the first non-NA value
+Function to generate a Plot of 1-5 yera relative survival for different cohortes
 }
 \examples{
-coalesce(c(NA,NA,53))
+relsurvcoplot<-bbRelSurvCohortPlot(x,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=NULL,jahrende=NULL,jahrintervall=1,method='edererII', lang='de')
 
 }
 \author{

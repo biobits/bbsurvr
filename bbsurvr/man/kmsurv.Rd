@@ -10,10 +10,10 @@ kmsurv(S, totaltimes)
 one vector with the first non-NA value
 }
 \description{
-accepts a list of vectors of identical length and returns one vector with the first non-NA value
+Function to calculate the probability of survival for a point in time
 }
 \examples{
-kmsurv(S,M)
+x<-kmsurv(S,totaltimes)
 
 }
 \author{
