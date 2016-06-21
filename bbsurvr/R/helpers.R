@@ -22,11 +22,11 @@
 #' @export
 roughUICC <- function(uiccfull) {
 
-  res<-ifelse(substr(x,1,3)=="III","III",
-              ifelse(substr(x,0,2)=="IV","IV",
-                     ifelse(substr(x,0,2)=="II","II",
-                            ifelse(substr(x,0,1)=="I","I",
-                                   ifelse(substr(x,0,1)=="0","0","ND")))))
+  res<-ifelse(substr(uiccfull,1,3)=="III","III",
+              ifelse(substr(uiccfull,0,2)=="IV","IV",
+                     ifelse(substr(uiccfull,0,2)=="II","II",
+                            ifelse(substr(uiccfull,0,1)=="I","I",
+                                   ifelse(substr(uiccfull,0,1)=="0","0","ND")))))
   return(res)
 }
 

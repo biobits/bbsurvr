@@ -1,7 +1,7 @@
 Package: bbsurvr
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
+Title: R package to streamline survival analysis. This includes plotting, algorithms and little helpers I use in my day to day work.
+Version: 0.1.1
 Author: Stefan Bartels
 Maintainer: Stefan BArtels <email@biobits.eu>
 Description: More about what it does (maybe more than one line)
