@@ -144,8 +144,8 @@ getBBColors<-function(x) {
   cols2<-c("#004992","#ED9B33","#B22229","#7296AF","#8ABD24","#AA9C8F","#BA9BC5","#575756")
   if(x<9){mypalette<-cols2[1:x]
   }else{
-    mypalette<-brewer.pal(9,"Set1")
-    mypalette<-colorRampPalette(mypalette, space = "Lab")
+    mypalette<-RColorBrewer::brewer.pal(9,"Set1")
+    mypalette<-grDevices::colorRampPalette(mypalette, space = "Lab")
     mypalette<-mypalette(x)}
   return(mypalette)
 

@@ -35,6 +35,8 @@ kmsurv <- function(S, totaltimes) {
 #'
 #' @return a numeric vector representing the p-value
 #'
+#' @import survival
+#'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
@@ -51,6 +53,8 @@ p.value.survdiff<-function(daten,group=NULL, time="time",status="status")
 
 ##########################################################################################################################################################################################################
 ##Funktion zum erstellen eines einheitlichen KM-Plots
+##
+## Hinweis: Bitte unbeding das Paket "rms" mit seiner funktion "survplot" prüfen
 ##
 ##########################################################################################################################################################################################################
 #' R Function to streamline the generation of survival plots
@@ -78,6 +82,8 @@ p.value.survdiff<-function(daten,group=NULL, time="time",status="status")
 #'
 #' @return a survival plot
 #'
+#' @import survival
+#'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
@@ -99,7 +105,7 @@ bbKMPlot <- function (daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetex
     #aucount <- length(daten$time)
     if(file.out==TRUE)
     {png(file=paste(c(filename,".png"),collapse = ""),bg="white",res=300,width=1600,height=1600)}
-    fitg<-survfit(Surv(time, status)~1 ,data = daten,type="kaplan-meier")
+    fitg<-survival::survfit(survival::Surv(time, status)~1 ,data = daten,type="kaplan-meier")
     survmedian<-(summary(fitg)$table["median"][[1]])
     aucount<-formatC((summary(fitg)$table["records"][[1]]),digits=0,format="f")
     survmedian_text<-formatC(survmedian,digits = 1,format = "f")
@@ -128,7 +134,7 @@ bbKMPlot <- function (daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetex
   {
     daten[,gruppe]<-as.factor(daten[[gruppe]])
     Acount <- length(daten$time)
-    fits<-survfit(Surv(time,status) ~daten[[gruppe]], data =daten)
+    fits<-survival::survfit(survival::Surv(time,status) ~daten[[gruppe]], data =daten)
     gruppen_list  <- levels(daten[[gruppe]])
     MEDIANE <-list()
     ANZAHL<-list()
@@ -293,6 +299,7 @@ bbTheme <- function() {
 #' @param jahrstart year to start the intervall
 #' @param jahrende year of end of intervall
 #'
+#' @import periodR
 #'
 #' @return a base plot
 #'
@@ -389,6 +396,8 @@ bbRelSurvPlot<- function(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=
 #' @param method  to calculate relative survival default ='edererII'
 #'
 #' @return a plot
+#'
+#' @import periodR
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
