@@ -24,10 +24,10 @@ a base boxplot
 R Function to streamline the generation of (grouped) boxplots
 }
 \examples{
-bp<-bbBoxPlot()
+bp<-bbBoxPlot(daten)
+bp<-bbBoxPlot(iris$Petal.Width,gruppe=iris$Species,ylab="Petal Width")
 
 }
 \author{
 Stefan Bartels, \email{email@biobits.eu}
 }
-

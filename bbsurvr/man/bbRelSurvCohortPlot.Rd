@@ -38,4 +38,3 @@ relsurvcoplot<-bbRelSurvCohortPlot(x,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=NU
 \author{
 Stefan Bartels, \email{email@biobits.eu}
 }
-

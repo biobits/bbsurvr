@@ -59,4 +59,3 @@ xmax=61.25,xlab="Beobachtungszeit in Monaten",cex.lab=1,cex.axis=1,watermark=TRU
 \author{
 Stefan Bartels, \email{email@biobits.eu}
 }
-

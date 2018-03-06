@@ -28,4 +28,3 @@ pvalue<-p.value.survdiff(daten=df,group="Treatment",time="duration",status="surv
 \author{
 Stefan Bartels, \email{email@biobits.eu}
 }
-

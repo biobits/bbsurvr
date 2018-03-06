@@ -19,4 +19,3 @@ x<-kmsurv(S,totaltimes)
 \author{
 Stefan Bartels, \email{email@biobits.eu}
 }
-

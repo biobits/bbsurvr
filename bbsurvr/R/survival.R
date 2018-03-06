@@ -82,7 +82,7 @@ p.value.survdiff<-function(daten,group=NULL, time="time",status="status")
 #'
 #' @return a survival plot
 #'
-#' @import survival
+#' @import survival bbhelper
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
@@ -161,7 +161,7 @@ bbKMPlot <- function (daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetex
           }
         }
       }}
-    mypalette<-getBBColors(length(MEDIANE))
+    mypalette<-bbhelper::getBBColors(length(MEDIANE))
 
     # Legende ausserhalb des Plotbereichs
 
@@ -234,17 +234,19 @@ bbKMPlot <- function (daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetex
 #'
 #' @return a base boxplot
 #'
+#' @import bbhelper
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
 #' @examples
-#' bp<-bbBoxPlot()
+#' bp<-bbBoxPlot(daten)
+#' bp<-bbBoxPlot(iris$Petal.Width,gruppe=iris$Species,ylab="Petal Width")
 #'
 #'@export
 bbBoxPlot<- function(daten,gruppe=NULL,filename=NULL,ylab,titel=NULL)
 {
 
-  mypalette<-getBBColors(length(levels(gruppe)))
+  mypalette<-bbhelper::getBBColors(length(levels(gruppe)))
   if (is.null(filename)==FALSE){png(file=paste(c(filename,".png"),collapse = ""),bg="white",res=300,width=1600,height=1600) }
   boxplot(daten ~ gruppe,ylab=ylab,col=mypalette,  horizontal=FALSE,cex.axis=0.7, las=3,show.names=FALSE)
   legend("topright",levels(gruppe),fill=mypalette,cex=0.8)
@@ -331,7 +333,7 @@ bbRelSurvPlot<- function(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=
   for (gr in levels(x[,gruppe]))
   {
 
-    subdata<-drop.levels(subset(x,x[,gruppe]==gr))
+    subdata<-bbhelper::drop.levels(subset(x,x[,gruppe]==gr))
     data.year=levels(as.factor(subdata$dy))
     period.result <- period(subdata, 5,
                             probs.male, probs.female, j_start, j_end,
@@ -430,7 +432,7 @@ bbRelSurvCohortPlot<- function(x,ylab=NULL,xlab=NULL,titel=NULL,jahrstart=NULL,j
     if(counter==0){counter=counter+1}
     lower_j<-jseq[counter]
     upper_j<-jseq[counter+jahrintervall]
-    subdata<-drop.levels(subset(x,dy>=lower_j & dy<=upper_j))
+    subdata<-bbhelper::drop.levels(subset(x,dy>=lower_j & dy<=upper_j))
     data.year=levels(as.factor(subdata$dy))
     period.result <- period(subdata, 5,
                             probs.male, probs.female, j_start, j_end,

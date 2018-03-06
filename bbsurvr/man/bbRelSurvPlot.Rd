@@ -35,4 +35,3 @@ relsurvplot<-bbRelSurvPlot(x,gruppe=NULL,ylab=NULL,xlab=NULL,titel=NULL,jahrstar
 \author{
 Stefan Bartels, \email{email@biobits.eu}
 }
-
