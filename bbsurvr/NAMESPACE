@@ -2,11 +2,8 @@
 
 export(bbBoxPlot)
 export(bbKMPlot)
-export(bbRelSurvCohortPlot)
-export(bbRelSurvPlot)
 export(bbTheme)
 export(kmsurv)
 export(p.value.survdiff)
 import(bbhelper)
-import(periodR)
 import(survival)

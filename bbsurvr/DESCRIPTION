@@ -1,7 +1,7 @@
 Package: bbsurvr
 Type: Package
 Title: R package to streamline survival analysis. This includes plotting, algorithms and little helpers I use in my day to day work.
-Version: 0.1.5
+Version: 0.1.7
 Author: Stefan Bartels
 Maintainer: Stefan BArtels <email@biobits.eu>
 Description: More about what it does (maybe more than one line)
@@ -10,6 +10,5 @@ LazyData: TRUE
 Imports:
     survival,
     RColorBrewer,
-    periodR,
     bbhelper
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0

@@ -4,7 +4,8 @@
 \alias{p.value.survdiff}
 \title{Function to exctract p-Value from surfdiff object}
 \usage{
-p.value.survdiff(daten, group = NULL, time = "time", status = "status")
+p.value.survdiff(daten, group = NULL, time = "time",
+  status = "status")
 }
 \arguments{
 \item{daten}{Data.Frame with survival datacontaining min. two columns with a) survival time b) survival status}
