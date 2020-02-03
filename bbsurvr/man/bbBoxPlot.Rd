@@ -24,7 +24,6 @@ a base boxplot
 R Function to streamline the generation of (grouped) boxplots
 }
 \examples{
-bp<-bbBoxPlot(daten)
 bp<-bbBoxPlot(iris$Petal.Width,gruppe=iris$Species,ylab="Petal Width")
 
 }

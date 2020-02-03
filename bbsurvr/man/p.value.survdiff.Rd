@@ -4,8 +4,7 @@
 \alias{p.value.survdiff}
 \title{Function to exctract p-Value from surfdiff object}
 \usage{
-p.value.survdiff(daten, group = NULL, time = "time",
-  status = "status")
+p.value.survdiff(daten, group = NULL, time = "time", status = "status")
 }
 \arguments{
 \item{daten}{Data.Frame with survival datacontaining min. two columns with a) survival time b) survival status}
@@ -23,7 +22,9 @@ a numeric vector representing the p-value
 accepts a list of vectors of identical length and returns one vector with the first non-NA value
 }
 \examples{
+\dontrun{
 pvalue<-p.value.survdiff(daten=df,group="Treatment",time="duration",status="survivalstatus")
+}
 
 }
 \author{

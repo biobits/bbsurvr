@@ -10,7 +10,9 @@ bbTheme()
 accepts a list of vectors of identical length and returns one vector with the first non-NA value
 }
 \examples{
+\dontrun{
 bbTheme()
+}
 
 }
 \author{

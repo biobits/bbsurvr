@@ -6,6 +6,11 @@
 \usage{
 kmsurv(S, totaltimes)
 }
+\arguments{
+\item{S}{xx}
+
+\item{totaltimes}{xx}
+}
 \value{
 one vector with the first non-NA value
 }
@@ -13,7 +18,9 @@ one vector with the first non-NA value
 Function to calculate the probability of survival for a point in time
 }
 \examples{
+\dontrun{
 x<-kmsurv(S,totaltimes)
+}
 
 }
 \author{

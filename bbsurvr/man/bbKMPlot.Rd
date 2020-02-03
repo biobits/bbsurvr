@@ -4,11 +4,25 @@
 \alias{bbKMPlot}
 \title{R Function to streamline the generation of survival plots}
 \usage{
-bbKMPlot(daten, gruppe = NULL, titel, filename, survtime = NULL,
-  survtimetext = NULL, legendeout = NULL, file.out = TRUE,
-  legfontsize = NULL, subtext = "", xmax = 61.25,
-  xlab = "Beobachtungszeit in Monaten", cex.lab = 1, cex.axis = 1,
-  watermark = TRUE, ylab = "", logrank = FALSE)
+bbKMPlot(
+  daten,
+  gruppe = NULL,
+  titel,
+  filename,
+  survtime = NULL,
+  survtimetext = NULL,
+  legendeout = NULL,
+  file.out = TRUE,
+  legfontsize = NULL,
+  subtext = "",
+  xmax = 61.25,
+  xlab = "Beobachtungszeit in Monaten",
+  cex.lab = 1,
+  cex.axis = 1,
+  watermark = TRUE,
+  ylab = "",
+  logrank = FALSE
+)
 }
 \arguments{
 \item{daten}{the data.frame with survival data}
@@ -52,8 +66,10 @@ a survival plot
 accepts a data frame containing survival data an
 }
 \examples{
+\dontrun{
 p<-bbKMPlot(daten,gruppe=NULL,titel,filename,survtime=NULL,survtimetext=NULL,legendeout=NULL,file.out=TRUE,legfontsize=NULL,subtext="",
 xmax=61.25,xlab="Beobachtungszeit in Monaten",cex.lab=1,cex.axis=1,watermark=TRUE,ylab="",logrank=FALSE)
+}
 
 }
 \author{
