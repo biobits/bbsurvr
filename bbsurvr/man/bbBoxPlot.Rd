@@ -2,7 +2,7 @@
 % Please edit documentation in R/survival.R
 \name{bbBoxPlot}
 \alias{bbBoxPlot}
-\title{R Function to streamline the generation of (grouped) boxplots}
+\title{bbBoxPlot - streamlined BoxPlot}
 \usage{
 bbBoxPlot(daten, gruppe = NULL, filename = NULL, ylab, titel = NULL)
 }
@@ -15,7 +15,7 @@ bbBoxPlot(daten, gruppe = NULL, filename = NULL, ylab, titel = NULL)
 
 \item{ylab}{label of y axis}
 
-\item{titel}{}
+\item{titel}{title of plot}
 }
 \value{
 a base boxplot

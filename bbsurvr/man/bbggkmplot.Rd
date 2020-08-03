@@ -2,7 +2,7 @@
 % Please edit documentation in R/survival.R
 \name{bbggkmplot}
 \alias{bbggkmplot}
-\title{R Function to streamline the generation of survival plots}
+\title{bbggkmplot - streamlined KM survival curve}
 \usage{
 bbggkmplot(
   daten,
@@ -21,7 +21,7 @@ bbggkmplot(
   logrank = FALSE,
   xmax = 100,
   showmedian = T,
-  ...
+  median.dig = 2
 )
 }
 \arguments{
@@ -43,6 +43,8 @@ bbggkmplot(
 
 \item{ylab}{the label for y-axis}
 
+\item{title}{the title of the plot}
+
 \item{survtime}{the time intervall in month to show the survival rate for (e.g. 24 for 2-year survival-rate)}
 
 \item{survtimetext}{the text to label the survival rate}
@@ -55,12 +57,15 @@ bbggkmplot(
 
 \item{showmedian}{if true the median value is shown in plot /legend (for more than one group). Default is true.}
 
-\item{titel}{the title of the plot}
+\item{median.dig}{to how many digits the median should be rounded. default is 2}
 }
 \value{
 a survival plot
 }
 \description{
+R Function to streamline the generation of survival plots
+}
+\details{
 accepts a data frame containing survival data an
 }
 \examples{

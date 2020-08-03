@@ -1,7 +1,7 @@
 Package: bbsurvr
 Type: Package
 Title: R package to streamline survival analysis. This includes plotting, algorithms and little helpers I use in my day to day work.
-Version: 0.1.10
+Version: 0.1.14
 Author: Stefan Bartels
 Maintainer: Stefan Bartels <email@biobits.eu>
 Description: More about what it does (maybe more than one line)
@@ -15,4 +15,4 @@ Imports:
     dplyr,
     ggplot2,
     ggpubr
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0

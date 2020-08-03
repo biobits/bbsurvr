@@ -2,7 +2,7 @@
 % Please edit documentation in R/survival.R
 \name{bbKMPlot}
 \alias{bbKMPlot}
-\title{R Function to streamline the generation of survival plots}
+\title{bbKMplot - streamlined KM survival curve}
 \usage{
 bbKMPlot(
   daten,
@@ -63,6 +63,9 @@ bbKMPlot(
 a survival plot
 }
 \description{
+R deprecated ! Function to streamline the generation of survival plots
+}
+\details{
 accepts a data frame containing survival data an
 }
 \examples{

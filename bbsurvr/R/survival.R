@@ -59,12 +59,13 @@ p.value.survdiff<-function(daten,group=NULL, time="time",status="status")
 ##########################################################################################################################################################################################################
 #' R Function to streamline the generation of (grouped) boxplots
 #'
+#' @title bbBoxPlot - streamlined BoxPlot
 #'
 #' @param daten the vector of numeric data
 #' @param gruppe if given the factors to be grouped by
 #' @param filename if given output will be delivered to file
 #' @param ylab label of y axis
-#' @param titel
+#' @param titel title of plot
 #'
 #' @return a base boxplot
 #'
@@ -92,7 +93,7 @@ bbBoxPlot<- function(daten,gruppe=NULL,filename=NULL,ylab,titel=NULL)
 }
 
 ##########################################################################################################################################################################################################
-##Funktion f?r das erzeugen eines angepassten RGB-GmbH Farbthemas
+##Funktion f?r das erzeugen eines angepassten Farbthemas
 ##########################################################################################################################################################################################################
 #' R fuction to set a unified layout for base plots
 #'
@@ -126,15 +127,18 @@ bbTheme <- function() {
 #'
 #' accepts a data frame containing survival data an
 #'
+#' @title bbggkmplot - streamlined KM survival curve
+#'
 #' @param daten the data.frame with survival data
 #' @param gruppe optional: the factor the plot has to be grouped by
 #' @param time optional: data holding the the time
 #' @param status optional: data holding survival status (0/1)
-#' @param titel the title of the plot
+#' @param title the title of the plot
 #' @param survtime the time intervall in month to show the survival rate for (e.g. 24 for 2-year survival-rate)
 #' @param survtimetext the text to label the survival rate
 #' @param risk.table if TRUE the the risk table is ploted beneath the graph. Defalut is true.
 #' @param showmedian if true the median value is shown in plot /legend (for more than one group). Default is true.
+#' @param median.dig to how many digits the median should be rounded. default is 2
 #' @param xmax MAx Value for X-axis
 #' @param xlab Label for x-axis (default="Monate (Anzeige bis max. 5 Jahre)")
 #' @param cex.lab Fontsize for label (default=1)
@@ -165,22 +169,26 @@ bbTheme <- function() {
 #'@export
 bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in months"
                      ,cex.lab=1,cex.axis=1,watermark=TRUE,ylab="",title="",survtime=NULL,survtimetext=NULL
-                     ,risk.table  = TRUE,logrank=FALSE,xmax=100,showmedian=T, ...){
+                     ,risk.table  = TRUE,logrank=FALSE,xmax=100,showmedian=T,median.dig=2){
   qTIME <- dplyr::enquo(time)                    # Create quosure
   qSTATUS  <- dplyr::enquo(status)               # Create quosure
   qLevels<-1
   qMedian<-"none"
   qLegend<-"right"
+  groupnames<-NULL
+  subtext<-""
+
   if(!missing(gruppe)){
     qGRUPPE <- dplyr::enquo(gruppe)
     Sdata<-daten%>%dplyr::select(time= !! dplyr::as_label(qTIME),status= !! dplyr::as_label(qSTATUS),group= !! dplyr::as_label(qGRUPPE))
     Sdata$group<-as.factor(Sdata$group)
     fit <- survival::survfit(survival::Surv(time=time, event=status) ~ group, data=Sdata)
-    qLevels<-length(levels(Sdata$group))
-    groupnames<-levels(Sdata$group)
+    groupnames<-levels(droplevels(Sdata$group))
+    qLevels<-length(groupnames)
+
     if (showmedian){
       gMedian<-as.vector(survminer::surv_median(fit)["median"])
-      medianText<-paste0("\nMedian = ", as.vector(unlist(gMedian)))
+      medianText<-paste0("\nMedian = ", as.vector(unlist(round(gMedian,median.dig))))
       groupnames<-paste0(groupnames,medianText)
     }
   }else{
@@ -189,6 +197,8 @@ bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in mon
     groupnames<-""
     if(showmedian){
       qMedian<-"hv"
+      gMedian<-as.vector(survminer::surv_median(fit)["median"])
+      subtext<-paste("Median=",round(gMedian,median.dig))
     }
     qLegend<-"none"
   }
@@ -196,12 +206,12 @@ bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in mon
   mypalette<-bbhelper::getBBColors(qLevels)
 
   #survivalprobability at timepoint
-  subtext<-""
+
   if(!is.null(survtime)){
-    survtimepoint<-formatC((summary(fit, times=survtime)$surv),digits=2,format="f")
+    survtimepoint<-formatC((summary(fit, times=survtime,extend=TRUE)$surv),digits=2,format="f")
     # Wenn wir nur eine Gruppe haben Angabe als "caption"
     if(missing(gruppe)){
-      subtext<-paste("\n",survtimetext," = ",survtimepoint)
+      subtext<-paste0(subtext,paste("\n",survtimetext," = ",survtimepoint))
     }else{
       groupnames<-paste0(groupnames,paste("\n",survtimetext," = ",survtimepoint,"\n"))
     }
@@ -256,9 +266,10 @@ bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in mon
 ##########################################################################################################################################################################################################
 ##Funktion zum erstellen eines einheitlichen KM-Plots
 ##########################################################################################################################################################################################################
-#' R Function to streamline the generation of survival plots
+#' R deprecated ! Function to streamline the generation of survival plots
 #'
 #' accepts a data frame containing survival data an
+#' @title bbKMplot - streamlined KM survival curve
 #'
 #' @param daten the data.frame with survival data
 #' @param gruppe optional: the factor the plot has to be grouped by
