@@ -1,9 +1,0 @@
-bbBoxPlot               bbBoxPlot - streamlined BoxPlot
-bbKMPlot                bbKMplot - streamlined KM survival curve
-bbTheme                 R fuction to set a unified layout for base
-                        plots
-bbggkmplot              bbggkmplot - streamlined KM survival curve
-kmsurv                  Function to calculate the probability of
-                        survival for a point in time
-p.value.survdiff        Function to exctract p-Value from surfdiff
-                        object
