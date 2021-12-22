@@ -23,8 +23,7 @@ bbggkmplot(
   showmedian = T,
   median.dig = 2,
   ggtheme = theme_light(),
-  conf.int = TRUE,
-  legend = "right"
+  conf.int = TRUE
 )
 }
 \arguments{
@@ -66,8 +65,6 @@ bbggkmplot(
 Allowed values include ggplot2 official themes: see theme}
 
 \item{conf.int}{logical value. If TRUE, plots confidence interval}
-
-\item{legend}{character specifying legend position. Allowed values are one of c("top", "bottom", "left", "right", "none").}
 }
 \value{
 a survival plot

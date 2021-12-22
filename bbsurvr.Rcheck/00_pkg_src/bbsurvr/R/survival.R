@@ -149,11 +149,10 @@ bbTheme <- function() {
 #' @param ggtheme function, ggplot2 theme name. Default value is theme_light.
 #'                Allowed values include ggplot2 official themes: see theme
 #' @param conf.int logical value. If TRUE, plots confidence interval
-#' @param legend character specifying legend position. Allowed values are one of c("top", "bottom", "left", "right", "none").
 #'
 #' @return a survival plot
 #'
-#' @import survminer survival bbhelper dplyr ggplot2
+#' @import survminer survival bbhelper dplyr ggplot2 ggpubr
 #'
 #' @author Stefan Bartels, \email{email@biobits.eu}
 #'
@@ -172,13 +171,12 @@ bbTheme <- function() {
 #'@export
 bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in months"
                      ,cex.lab=1,cex.axis=1,watermark=TRUE,ylab="",title="",survtime=NULL,survtimetext=NULL
-                     ,risk.table  = TRUE,logrank=FALSE,xmax=100,showmedian=T,median.dig=2,ggtheme= theme_light(),conf.int=TRUE
-                     ,legend="right"){
+                     ,risk.table  = TRUE,logrank=FALSE,xmax=100,showmedian=T,median.dig=2,ggtheme= theme_light(),conf.int=TRUE){
   qTIME <- dplyr::enquo(time)                    # Create quosure
   qSTATUS  <- dplyr::enquo(status)               # Create quosure
   qLevels<-1
   qMedian<-"none"
-  qLegend<-legend
+  qLegend<-"right"
   groupnames<-NULL
   subtext<-""
 
@@ -257,16 +255,12 @@ bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in mon
                                                       hjust=1.1, vjust=-0.2, col="grey", cex=2.5, alpha = 0.8)
   }
   if(risk.table){
-    # survplot$table <- ggpubr::ggpar(
-    #   survplot$table,
-    #   font.title    = c(8),
-    #   font.x        = c(8),
-    #   font.xtickslab = c(8)
-    #)
-    survplot$table<-survplot$table + theme(plot.title = element_text(size=8),
-                                           axis.title.x = element_text(size=8),
-                                           axis.text.x = element_text(size=8)
-                                           )
+    survplot$table <- ggpubr::ggpar(
+      survplot$table,
+      font.title    = c(8),
+      font.x        = c(8),
+      font.xtickslab = c(8)
+    )
   }
   survplot
 }
