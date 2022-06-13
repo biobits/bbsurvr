@@ -191,7 +191,7 @@ bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in mon
     qLevels<-length(groupnames)
 
     if (showmedian){
-      gMedian<-as.vector(survminer::surv_median(fit)["median"])
+      gMedian<-as.vector(survminer::surv_median(fit)[["median"]])
       medianText<-paste0("\nMedian = ", as.vector(unlist(round(gMedian,median.dig))))
       groupnames<-paste0(groupnames,medianText)
     }
@@ -201,7 +201,7 @@ bbggkmplot<-function(daten,gruppe=NULL,time=time,status=status,xlab="Time in mon
     groupnames<-""
     if(showmedian){
       qMedian<-"hv"
-      gMedian<-as.vector(survminer::surv_median(fit)["median"])
+      gMedian<-as.vector(survminer::surv_median(fit)[["median"]])
       subtext<-paste("Median=",round(gMedian,median.dig))
     }
     qLegend<-"none"
